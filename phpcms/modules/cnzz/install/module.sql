@@ -1,0 +1,1 @@
+INSERT INTO `phpcms_module` (`module`, `name`, `url`, `iscore`, `version`, `description`, `setting`, `listorder`, `disabled`, `installdate`, `updatedate`) VALUES ('cnzz', 'CNZZ统计', 'cnzz/', 0, '1.0', 'CNZZ统计', '', 0, 0, '2010-9-05', '2010-9-05');

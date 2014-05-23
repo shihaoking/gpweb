@@ -1,0 +1,13 @@
+{template "content","header"}
+<div class="news_list">
+    <div class="crumbs"><a href="{siteurl($siteid)}" class="home_link">首页</a> > <span class="catname">{$catname}</span></div>
+    {pc:content action="lists" catid="$catid" num="25" order="id DESC" page="$page"}
+        <ul class="list lh24 f14">
+			{loop $data $r}
+				<li><span class="rt">{date('Y-m-d H:i:s',$r[inputtime])}</span><a href="{$r[url]}" target="_blank"{title_style($r[style])}>{$r[title]}</a></li>
+			{/loop}
+        </ul>
+    <div id="pages" class="text-c">{$pages}</div>
+{/pc}
+</div>
+{template "content","footer"}

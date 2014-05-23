@@ -1,0 +1,34 @@
+{template "content","header"}
+<link href="{CSS_PATH}link.css" rel="stylesheet" type="text/css" />
+    <div class="crumbs"><a href="{siteurl($siteid)}">网站首页</a><span> &gt; </span><a href="{APP_PATH}index.php?m={ROUTE_M}&siteid={$siteid}" class="catname">友情链接</a></div>
+    <div class="box boxsbg cboxs">
+     <div class="tag_a">
+        	{pc:link action="lists" typeid="0" siteid="$siteid" linktype="1" order="desc" num="6" return="dat"}
+				{loop $dat $v}
+	       		 <a href="{$v[url]}" title="{$v[name]}" target="_blank"><img src="{$v[logo]}" width="92" height="31" /></a>
+		        {/loop}
+			{/pc}
+      </div>
+         
+     {pc:link action="type_lists" listorder="desc" siteid="$siteid"}
+		{loop $data $type_v}
+    	<h5>{$type_v[name]} <a href="{APP_PATH}index.php?m=link&c=index&a=list_type&type_id={$type_v[typeid]}&siteid={$siteid}" class="more">更多>></a></h5>
+        <div class="tag_a">
+        	{pc:link action="lists" typeid="$type_v[typeid]" siteid="$siteid" linktype="1" order="desc" num="6" return="dat"}
+				{loop $dat $v}
+	       		 <a href="{$v[url]}" title="{$v[name]}" target="_blank"><img src="{$v[logo]}" width="92" height="31" /></a>
+		        {/loop}
+			{/pc}
+         </div>
+        <div class="tag_a">
+        	{pc:link action="lists" typeid="$type_v[typeid]" siteid="$siteid" linktype="0" order="desc" num="10" return="dat"}
+				{loop $dat $v}
+	       		 <a href="{$v[url]}" title="{$v[name]}"  target="_blank">{$v[name]} </a>
+		        {/loop}
+			{/pc}
+         </div>
+    	{/loop}
+	{/pc}  
+</div>
+          
+{template "content","footer"}

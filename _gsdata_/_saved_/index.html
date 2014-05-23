@@ -1,0 +1,297 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=7" />
+<title>PHPCMS演示站</title>
+<meta name="keywords" content="PHPCMS演示站">
+<meta name="description" content="PHPCMS演示站">
+<link href="http://localhost/statics/css/reset.css" rel="stylesheet" type="text/css" />
+<link href="http://localhost/statics/css/default_blue.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="http://localhost/statics/js/jquery.min.js"></script>
+<script type="text/javascript" src="http://localhost/statics/js/jquery.sgallery.js"></script>
+<script type="text/javascript" src="http://localhost/statics/js/search_common.js"></script>
+<script type="text/javascript" src="http://localhost/statics/js/cookie.js"></script>
+<script type="text/javascript" src="http://localhost/statics/js/member_common.js"></script>
+<script type="text/javascript" src="http://localhost/statics/js/dialog.js"></script>
+<script type="text/javascript" src="http://localhost/statics/js/formvalidator.js" charset="UTF-8"></script>
+<script type="text/javascript" src="http://localhost/statics/js/formvalidatorregex.js" charset="UTF-8"></script>
+<script type="text/javascript" src="http://localhost/statics/js/dateutil.js" charset="UTF-8"></script>
+<script type="text/javascript" src="http://localhost/statics/js/jquery.cycle.all.js" charset="UTF-8"></script>
+</head>
+<body onload="getNowDate();">
+<div class="main_body">
+<div class="header">
+<div class="header-content">
+<div class="body-top">
+	<div class="header-logo"></div>
+		<script type="text/javascript">
+		function save_username() {
+			if($('#cookietime').attr('checked')==true) {
+				var username = $('#username').val();
+				setcookie('username', username, 3);
+			} else {
+				delcookie('username');
+			}
+			alert(getcookie('username'));
+		}
+		var username = getcookie('username');
+		if(username != '' && username != null) {
+			$('#username').val(username);
+			$('#cookietime').attr('checked',true);
+		}
+		
+		//顶部行情滚动
+		$(document).ready(function(){
+			$('#numero').cycle({ 
+				fx:      'scrollDown', 
+				speed:    600, 
+				timeout:  2000 
+			});
+		});
+
+	</script>
+	<div class="time_auto">
+		<table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tbody><tr>
+                    <td><img src="http://localhost/statics/images/icon_clock.gif" width="15" height="16" align="absmiddle">GMT时间：<span id="refreshTimegmt">01:18:07</span></td>
+                    <td><img src="http://localhost/statics/images/icon_clock.gif" width="15" height="16" align="absmiddle">北京时间：<span id="refreshTime">09:18:07</span></td>
+                    <td><a href="#" onclick="addFavorite();" style="color:#e8bac0"><img src="http://localhost/statics/images/icon_star.gif" width="14" height="16" align="absmiddle">加入收藏</a></td>
+                    <td><a href="#" onclick="setHomepage();" style="color:#e8bac0"><img src="http://localhost/statics/images/icon_home.gif" width="16" height="16" align="absmiddle">设为首页</a></td>
+                    <td style="line-height:1.3em;" valign="bottom">中文简体</td>
+            </tr>
+			</tbody>
+		</table>
+	</div>
+	<div class="login lh24 blue">
+	<script type="text/javascript">document.write('<iframe src="http://localhost/index.php?m=member&c=index&a=mini&forward='+encodeURIComponent(location.href)+'&siteid=1" allowTransparency="true"  width="545" height="30" frameborder="0" scrolling="no"></iframe>')</script>
+	</div>
+</div>
+<script type="text/javascript">
+var requestServerName = ""
+function addFavorite() {
+	if(window.external) {
+	      window.external.addFavorite("http://www.jdw2006.com", "简道网-恒生指数期货,股市行情,股指期货交易时间");
+	}
+	else if(window.sidebar) {
+	      window.sidebar.addPanel("简道网-恒生指数期货,股市行情,股指期货交易时间", "http://www.cf1898.com", "");
+	}
+}
+function setHomepage() {
+	if(document.all) {
+	    document.body.style.behavior='url(#default#homepage)';
+		document.body.setHomePage("http://www.cf1898.com");
+	}
+	else if(window.sidebar) {
+		if(window.netscape) {
+	    	try {  
+	        	netscape.security.PrivilegeManager.enablePrivilege("UniversalXPConnect");  
+	     	}  
+	     	catch (e) {  }
+		} 
+		var prefs = Components.classes['@mozilla.org/preferences-service;1'].getService(Components. interfaces.nsIPrefBranch);
+		prefs.setCharPref('browser.startup.homepage', "http://www.cf1898.com");
+	}
+}
+</script>
+<div class="nav-bar">
+	
+    	<map>
+    	        	<ul class="nav-site">
+			<li><a href="http://localhost"><span>首页</span></a></li>
+							<li class="line"></li>
+				<li><a href="http://localhost/list-1-1.html"><span>公司简介</span></a></li>
+							<li class="line"></li>
+				<li><a href="http://localhost/list-6-1.html"><span>内参消息</span></a></li>
+							<li class="line"></li>
+				<li><a href="http://localhost/list-7-1.html"><span>财经观察</span></a></li>
+							<li class="line"></li>
+				<li><a href="http://localhost/list-17-1.html"><span>盘面动态</span></a></li>
+							<li class="line"></li>
+				<li><a href="http://localhost/list-18-1.html"><span>操作跟踪</span></a></li>
+			            </ul>
+        		        </map>
+    </div> 
+<div class="announcement">
+    <div class="zenki"></div>
+		<div id="numero" style="position: relative; overflow: hidden;">
+            <ul style="position: absolute; top: 26px; left: 0px; z-index: 3; opacity: 1; display: none; width: 909px; height: 26px;">
+	            <li>小型标准普尔期指1306</li>        
+				<li class="yellow">1,560.75&nbsp;↓-2.00</li> 
+	            <li>小型道琼期指1306</li>
+	                    <li class="yellow">14,492.00&nbsp;↓-5.00</li> 
+	                	<li>小型纳斯达克期指1306</li>
+	                    <li class="yellow">2,810.25&nbsp;↓-0.75</li> 
+	                	<li>法兰克福1306</li>
+	                    <li class="green">7,840.50&nbsp;↑33.50</li>
+			</ul>
+            <ul style="position: absolute; top: 22.706296369710085px; left: 0px; display: block; z-index: 3; opacity: 1; width: 909px; height: 26px;">
+	                	<li>金融时报1306</li>
+	                    <li class="green">6,363.00&nbsp;↑32.00</li> 
+	                	<li>印度Nifty期指1304</li>
+	                    <li class="green">5,724.80&nbsp;↑48.95</li> 
+	                	<li>台股期货1304</li>
+	                    <li class="yellow">7,917.00&nbsp;↓-6.00</li>
+	                	<li>黄金期货1306</li>
+	                    <li class="green">1,598.80&nbsp;↑3.10</li>                  
+            </ul>
+            <ul style="position: absolute; top: -3.293703630289915px; left: 0px; display: block; z-index: 4; opacity: 1; width: 909px; height: 26px;">
+	            <li>俄罗斯RTS股指期货1306</li>
+	            <li class="green">141,200.00&nbsp;↑80.00</li> 
+			</ul>
+		</div> 
+    </div>
+</div>
+</div>
+<div class="main">
+<div class="main_content">
+<div class="main_right">
+	<div class="sshq">
+		<iframe style="OVERFLOW: hidden" src="http://www.jzcf168.com/images/stock.htm" frameborder="no" width="299" scrolling="no" height="333"></iframe>
+	</div>
+	<div class="box cat-area spzz">
+		<h5 class="title-1">财经观察<a href="http://localhost/list-7-1.html" class="more">更多>></a></h5>
+		<div class="content">
+		   			<ul class="list lh24 f14">
+								<li>
+					<a href="http://localhost/content-15-36-1.html" target="_blank" title="维度二高分红预期个股" style="" >
+						维度二高分红预期个股					</a>
+				</li>
+								<li>
+					<a href="http://localhost/content-15-35-1.html" target="_blank" title="维度一业绩超预期个股" style="" >
+						维度一业绩超预期个股					</a>
+				</li>
+								<li>
+					<a href="http://localhost/content-15-34-1.html" target="_blank" title="广州浪奇（000523）南沙新区王者归来" style="" >
+						广州浪奇（000523）南沙新区王者归来					</a>
+				</li>
+								<li>
+					<a href="http://localhost/content-15-33-1.html" target="_blank" title="维度三现金流充沛的奶牛" style="" >
+						维度三现金流充沛的奶牛					</a>
+				</li>
+								<li>
+					<a href="http://localhost/content-15-32-1.html" target="_blank" title="维度二高分红预期个股" style="" >
+						维度二高分红预期个股					</a>
+				</li>
+								<li>
+					<a href="http://localhost/content-15-31-1.html" target="_blank" title="维度一业绩超预期个股" style="" >
+						维度一业绩超预期个股					</a>
+				</li>
+								<li>
+					<a href="http://localhost/content-15-30-1.html" target="_blank" title="广州浪奇（000523）南沙新区王者归来" style="" >
+						广州浪奇（000523）南沙新区王者归来					</a>
+				</li>
+								<li>
+					<a href="http://localhost/content-15-29-1.html" target="_blank" title="维度三现金流充沛的奶牛" style="" >
+						维度三现金流充沛的奶牛					</a>
+				</li>
+								<li>
+					<a href="http://localhost/content-15-28-1.html" target="_blank" title="维度二高分红预期个股" style="" >
+						维度二高分红预期个股					</a>
+				</li>
+								<li>
+					<a href="http://localhost/content-15-27-1.html" target="_blank" title="维度一业绩超预期个股" style="" >
+						维度一业绩超预期个股					</a>
+				</li>
+							</ul>
+		   	   </div>
+	</div>
+</div>
+<div class="main_left"><!--main-->
+    <div class="news-hot">
+		图片轮动
+    </div>
+    <div class="col-auto">
+	    <!--<h5>财经观察</h5>-->
+        <div class="box cat-area">
+			   <h5 class="title-1">财经观察<a href="http://localhost/list-7-1.html" class="more">更多>></a></h5>
+             <div class="content">
+                						<ul class="list lh24 f14">
+													<li class="cjgc_li">
+							<a href="http://localhost/content-7-23-1.html" target="_blank" title="的的的第三方撒地方圣达菲" style="" >
+								<span class="tl">的的的第三方撒地方圣达菲</span>
+								<span class="it">2013-03-31 15:10:02</span>
+							</a>
+							</li>
+													<li class="cjgc_li">
+							<a href="http://localhost/content-7-22-1.html" target="_blank" title="新闻观察第一期退热贴" style="" >
+								<span class="tl">新闻观察第一期退热贴</span>
+								<span class="it">2013-03-31 15:09:50</span>
+							</a>
+							</li>
+													<li class="cjgc_li">
+							<a href="http://localhost/content-7-21-1.html" target="_blank" title="新闻观察第一期阿打发斯蒂芬" style="" >
+								<span class="tl">新闻观察第一期阿打发斯蒂芬</span>
+								<span class="it">2013-03-31 15:09:26</span>
+							</a>
+							</li>
+													<li class="cjgc_li">
+							<a href="http://localhost/content-7-20-1.html" target="_blank" title="新闻观察第一期" style="" >
+								<span class="tl">新闻观察第一期</span>
+								<span class="it">2013-03-31 15:09:05</span>
+							</a>
+							</li>
+													<li class="cjgc_li">
+							<a href="http://localhost/content-7-19-1.html" target="_blank" title="沪深指数逆势涨停，股市进入疯狂阶段！" style="" >
+								<span class="tl">沪深指数逆势涨停，股市进入疯狂阶段！</span>
+								<span class="it">2013-03-31 14:54:46</span>
+							</a>
+							</li>
+													<li class="cjgc_li">
+							<a href="http://localhost/content-7-18-1.html" target="_blank" title="财经新闻3" style="" >
+								<span class="tl">财经新闻3</span>
+								<span class="it">2013-03-31 14:40:02</span>
+							</a>
+							</li>
+													<li class="cjgc_li">
+							<a href="http://localhost/content-7-5-1.html" target="_blank" title="财经新闻2" style="" >
+								<span class="tl">财经新闻2</span>
+								<span class="it">2013-03-30 10:41:52</span>
+							</a>
+							</li>
+													<li class="cjgc_li">
+							<a href="http://localhost/content-7-4-1.html" target="_blank" title="财经新闻1" style="" >
+								<span class="tl">财经新闻1</span>
+								<span class="it">2013-03-30 10:41:27</span>
+							</a>
+							</li>
+												</ul>
+                            </div>
+        </div>
+    </div>
+<div class="box blogroll ylink">
+	<ul class="colli imgul">
+                			<li><a href="http://www.phpcms.cn" title="PHPCMS" target="_blank"><img src="http://www.phpcms.cn/images/logo_88_31.gif" width="88" height="31" /></a></li>
+        			<li><a href="http://www.sdo.com" title="盛大在线" target="_blank"><img src="http://www.snda.com/cn/logo/comp_logo_sdo.gif" width="88" height="31" /></a></li>
+                    </ul>
+
+	<script type="text/javascript"> 
+	$(function(){
+		new slide("#main-slide","cur",310,260,1);//焦点图
+		new SwapTab(".SwapTab","span",".tab-content","ul","fb");//排行TAB
+	})
+	</script>
+</div>
+</div></div></div>
+<div class="footer">
+<p class="info">
+<a href="http://localhost/html/about/aboutus/" target="_blank">关于我们</a> |  
+<a href="http://localhost/html/about/contactus/" target="_blank">联系方式</a> |  
+<a href="http://localhost/html/about/qywh/" target="_blank">企业文化</a> |  
+<a href="http://localhost/index.php?m=link" target="_blank">友情链接</a>
+<br />
+Powered by <strong><a href="http://www.phpcms.cn" target="_blank">PHPCMS</a></strong> <em>V9.3.1</em> &copy; 2011 <img src="http://localhost/statics/images/copyright.gif"/></p>
+</div>
+<script type="text/javascript">
+$(function(){
+	$(".picbig").each(function(i){
+		var cur = $(this).find('.img-wrap').eq(0);
+		var w = cur.width();
+		var h = cur.height();
+	   $(this).find('.img-wrap img').LoadImage(true, w, h,'http://localhost/statics/images/msg_img/loading.gif');
+	});
+})
+</script>
+</div>
+</body>
+</html>

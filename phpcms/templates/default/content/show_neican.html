@@ -1,0 +1,59 @@
+  {template "content","header_neican"}
+ <div class="div1">
+ 	<div class="title_img">
+		<img class="mulupng" src="{IMG_PATH}neican/daohang1.png">
+		<strong>{$CATEGORYS[$catid][catname]}</strong>
+	</div>
+    <div class="news_title"><span>{$title}</span></div>
+</div>
+    <div class="div6">
+		<div class="fenge"></div>
+      <div class="time">编辑时间：{$inputtime}</div>
+    </div>
+    <div class="div2">
+      <div class="wenzhang">
+ 				{$content}
+				<!--内容关联投票-->
+				{if $voteid}<script language="javascript" src="{APP_PATH}index.php?m=vote&c=index&a=show&action=js&subjectid={$voteid}&type=2"></script>{/if}
+                
+      </div>
+    </div>
+    		
+             <!--往期回顾列表-->
+            <div class="hight20"></div>
+            <div class="div9">
+            	<div><span class="wq_title">往期回顾</span></div>
+                   {pc:get sql="select id,catid,title,inputtime,url from v9_news where catid=$catid and inputtime<unix_timestamp('$inputtime') order by inputtime desc" num="5" return="data"}
+            	<ul class="ul_left">
+                    {loop $data $r}
+                       <li><a href="{$r[url]}" {title_style($r[style])> {$r[title]}<span>{date('Y-m-d',$r[inputtime])}</span></a></li>
+                     {/loop}
+                </ul>
+                    {/pc}
+                   {pc:get sql="select id,catid,title,inputtime,url from v9_news where catid=$catid and inputtime<unix_timestamp('$inputtime') order by inputtime desc" return="data" start="5" num="5"}
+                <ul class="ul_right">
+                    {loop $data $r}
+                       <li><a href="{$r[url]}" {title_style($r[style])> {$r[title]}<span>{date('Y-m-d',$r[inputtime])}</span></a></li>
+                     {/loop}
+                </ul>
+                  {/pc}
+                <div class="hight10"></div>
+            </div>
+            <div class="yinying"></div>
+             <!--往期回顾列表-- 完 -->
+             
+             
+	<div class="div8">
+	{php $parentid = $CATEGORYS[$catid]['parentid'];}
+	{pc:get sql="select url from v9_category where parentid=$parentid and catid<$catid order by catid desc" num="1" return="prev"}
+		{if count($prev) != 0}
+		    <span class="fanye1"><a href="{$prev[0]['url']}"><img src="{IMG_PATH}neican/qianye.png"></a></span>
+		{/if}
+	{/pc}
+	{pc:get sql="select url from v9_category where parentid=$parentid and catid>$catid order by catid" num="1" return="next"}
+		{if count($next) != 0}
+			<span class="fanye2"><a href="{$next[0][url]}"><img src="{IMG_PATH}neican/houye.png"></a></span>	
+		{/if}
+	{/pc}
+   </div>
+  {template "content","footer_neican"}

@@ -1,0 +1,59 @@
+﻿{template "content","header_neican"}
+{pc:content action="lists" catid="$catid" num="1" order="id DESC" page="1" moreinfo="1"}
+{loop $data $val}
+<div class="div1">
+	<div class="title_img">
+     <img class="mulupng" src="{IMG_PATH}neican/daohang1.png">
+		<strong>{$CATEGORYS[$catid][catname]}</strong>
+	</div>
+    <div class="news_title"><span>{$val[title]}</span></div>
+</div>
+<div class="div6">
+		       <div class="fenge"></div>
+      <div class="time">编辑时间：{date('Y-m-d H:i:s',$val['inputtime'])}</div>
+</div>
+<div class="div2">
+      <div class="wenzhang">
+ 	{$val['content']}     
+      </div>
+</div>
+{/loop}
+{/pc}
+    		
+            <!--往期回顾列表-->
+            <div class="hight20"></div>
+            <div class="div9">
+            	<div><span class="wq_title">往期回顾</span></div>
+                   {pc:content action="lists" catid="$catid" num="5" order="inputtime DESC LIMIT 1,5--" page="$page"}
+            	<ul class="ul_left">
+                    {loop $data $r}
+                       <li><a href="{$r[url]}" {title_style($r[style])> {$r[title]}<span>{date('Y-m-d',$r[inputtime])}</span></a></li>
+                     {/loop}
+                </ul>
+                  {/pc}
+                   {pc:content action="lists" catid="$catid" num="5" order="inputtime  DESC LIMIT 5,5--" page="$page"}
+                <ul class="ul_right">
+                    {loop $data $r}
+                       <li><a href="{$r[url]}" {title_style($r[style])> {$r[title]}<span>{date('Y-m-d',$r[inputtime])}</span></a></li>
+                     {/loop}
+                </ul>
+                  {/pc}
+                <div class="hight10"></div>
+            </div>
+            <div class="yinying"></div>
+             <!--往期回顾列表-- 完 -->
+             
+
+	<div class="div8">
+	{pc:get sql="select url from v9_category where parentid=$parentid and catid<$catid order by catid desc" num="1" return="prev"}
+		{if count($prev) != 0}
+		    <span class="fanye1"><a href="{$prev[0]['url']}"><img src="{IMG_PATH}neican/qianye.png"></a></span>
+		{/if}
+	{/pc}
+	{pc:get sql="select url from v9_category where parentid=$parentid and catid>$catid order by catid" num="1" return="next"}
+		{if count($next) != 0}
+			<span class="fanye2"><a href="{$next[0][url]}"><img src="{IMG_PATH}neican/houye.png"></a></span>	
+		{/if}
+	{/pc}
+   </div>
+  {template "content","footer_neican"}
